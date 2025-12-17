@@ -144,6 +144,26 @@ User Input → View → Controller → Model → Data
 ## 👥 Development Team
 **The 5 Warriors** - NLP Project
 
+### 1. Omar Gamal 👑
+**Role**: Project Lead & Integration  
+**Focus**: System Architecture, Entry Point, Testing
+
+### 2. Muhand Sadek 🎨
+**Role**: Frontend Developer (GUI)  
+**Focus**: User Interface Design, Interaction Handling
+
+### 3. Ali Mustafa 🧠
+**Role**: AI/ML Specialist  
+**Focus**: Machine Learning Model, Training Logic
+
+### 4. Muhamed Hamed ⚙️
+**Role**: Backend Logic / Controller  
+**Focus**: Application Logic, Bridge between Model and View
+
+### 5. Ibrahimmelhaw 📊
+**Role**: Data Engineer  
+**Focus**: Dataset, Intents, Knowledge Base
+
 ## 📝 License
 Educational Project
 
