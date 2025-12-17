@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\controller",
+    "\\controller\\__pycache__",
+    "\\data",
+    "\\models",
+    "\\view"
+  ],
+  "SelectedNode": "\\view\\chatbot_gui.py",
+  "PreviewInSolutionExplorer": false
+}
