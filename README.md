@@ -1,174 +1,88 @@
+# Project Team Roles & Responsibilities
 
-# Deep Learning Chatbot - Multi-File Project
+Based on the current structure of the `nlp_chatbot_project`, here is the updated division of labor for the 5 team members.
 
-## 📋 Project Overview
-A modular NLP chatbot application built with clean architecture principles, featuring:
-- TF-IDF vectorization for text feature extraction
-- MLPClassifier neural network for intent classification
-- Modern Tkinter GUI interface
-- Clean separation of concerns across multiple files
+## Team Members
+1. Omar Gamal
+2. Muhand Sadek
+3. Ali Mustafa
+4. Muhamed Hamed
+5. Ibrahimmelhaw
 
-## 🏗️ Project Structure
+## 1. Omar Gamal - Project Lead & Integration
+**Focus Area**: System Architecture, Entry Point, Testing
+**Files**: `main.py`, `requirements.txt`, `README.md`
+**Responsibilities**:
+- Coordinating the overall integration of modules in `main.py`.
+- Managing dependencies in `requirements.txt`.
+- Ensuring the `README.md` is up to date with setup instructions.
+- Conducting final integration testing to ensure the View, Controller, and Model talk to each other correctly.
+- Code reviews and merging changes.
 
+## 2. Muhand Sadek - Frontend Developer (GUI)
+**Focus Area**: User Interface
+**Files**: `view/chatbot_gui.py`
+**Responsibilities**:
+- Designing and implementing the Chatbot GUI.
+- Ensuring a responsive and user-friendly design.
+- Handling user input events and displaying bot responses.
+- Visual improvements (colors, fonts, layout).
+
+## 3. Ali Mustafa - AI/ML Specialist
+**Focus Area**: Machine Learning Model
+**Files**: `models/chatbot_model.py`
+**Responsibilities**:
+- Developing and refining the Natural Language Processing (NLP) model.
+- Implementing the training logic (loading data, preprocessing, training neural net).
+- Optimizing model accuracy and saving the trained model.
+- Ensuring the model can predict intents effectively from user input.
+
+## 4. Muhamed Hamed - Backend Logic / Controller
+**Focus Area**: Application Logic
+**Files**: `controller/chatbot_controller.py`
+**Responsibilities**:
+- Acting as the bridge between the GUI and the Model.
+- Processing user messages received from the View before sending to the Model.
+- Formatting the Model's response before sending it back to the View.
+- Handling any auxiliary logic (e.g., fallback responses, error handling).
+
+## 5. Ibrahimmelhaw - Data Engineer
+**Focus Area**: Data & Knowledge Base
+**Files**: `data/intents_data.py`
+**Responsibilities**:
+- Curating and expanding the dataset of intents, patterns, and responses.
+- Structuring the training data JSON/Python dictionary.
+- Ensuring data quality and diversity for better model training.
+
+---
+## Workflow Diagram
+```mermaid
+graph TD
+    User((User)) <-->|Interacts| GUI[View: chatbot_gui.py]
+    GUI <-->|Events/Display| Controller[Controller: chatbot_controller.py]
+    Controller <-->|Predict/Response| Model[Model: chatbot_model.py]
+    Model <-->|Trains on| Data[Data: intents_data.py]
+    
+    subgraph "Muhand Sadek"
+    GUI
+    end
+    
+    subgraph "Muhamed Hamed"
+    Controller
+    end
+    
+    subgraph "Ali Mustafa"
+    Model
+    end
+    
+    subgraph "Ibrahimmelhaw"
+    Data
+    end
+    
+    subgraph "Omar Gamal"
+    Main[main.py / Integration]
+    end
+    
+    Main --> GUI
+    Main --> Controller
 ```
-nlp_chatbot_project/
-│
-├── data/
-│   ├── __init__.py
-│   └── intents_data.py          # Data Layer: Training data & responses
-│
-├── models/
-│   ├── __init__.py
-│   └── chatbot_model.py         # Model Layer: NLP & ML components
-│
-├── view/
-│   ├── __init__.py
-│   └── chatbot_gui.py           # View Layer: Tkinter GUI
-│
-├── controller/
-│   ├── __init__.py
-│   └── chatbot_controller.py    # Controller Layer: Event handling
-│
-├── main.py                      # Application entry point
-├── chatbots.py                  # Original single-file version (backup)
-└── README.md                    # This file
-```
-
-## 📦 File Descriptions
-
-### Data Layer (`data/`)
-- **`intents_data.py`**: Contains `ChatbotDataRepository` class
-  - Manages training texts and labels
-  - Stores intent response templates
-  - Provides data access methods for the model layer
-
-### Model Layer (`models/`)
-- **`chatbot_model.py`**: Contains NLP and ML components
-  - `NLPPreprocessor`: Text preprocessing and normalization
-  - `ChatbotMLModel`: TF-IDF vectorization, MLPClassifier training, prediction logic
-
-### View Layer (`view/`)
-- **`chatbot_gui.py`**: Contains `ChatbotView` class
-  - Complete Tkinter GUI implementation
-  - Chat display with message bubbles
-  - Input field and action buttons
-  - Dialog boxes for interactions
-
-### Controller Layer (`controller/`)
-- **`chatbot_controller.py`**: Contains `ChatbotController` class
-  - Connects View and Model layers
-  - Handles user events (send, clear, export, etc.)
-  - Coordinates message processing and responses
-
-### Main Entry Point
-- **`main.py`**: Application factory function
-  - Initializes all layers in correct order
-  - Wires dependencies together
-  - Starts the application
-
-## 🚀 How to Run
-
-### Prerequisites
-```bash
-pip install scikit-learn numpy tkinter
-```
-
-### Running the Application
-```bash
-python main.py
-```
-
-The application will:
-1. Initialize the data repository
-2. Create and train the ML model
-3. Display training accuracy
-4. Launch the GUI interface
-
-## 🎯 Features
-
-### Supported Intents
-- **lecture_time**: Ask about class schedules
-- **grades**: Inquire about grades and results
-- **greet**: Greet the chatbot
-- **bye**: Say goodbye
-
-### GUI Features
-- 💬 Chat interface with user/bot message bubbles
-- 🤖 Thinking indicator during processing
-- 💾 Export chat history to text file
-- 🗑️ Clear chat history
-- ✖️ Clear input field
-- ℹ️ About dialog with project info
-- 📝 Example queries for quick testing
-
-### Model Details
-- **Feature Extraction**: TF-IDF Vectorizer
-- **Classifier**: MLPClassifier (Neural Network)
-  - Hidden layers: (16, 8)
-  - Activation: ReLU
-  - Solver: Adam
-  - Max iterations: 500
-- **Confidence Threshold**: 0.5
-
-## 🏛️ Architecture Principles
-
-### Clean Architecture
-- **Separation of Concerns**: Each layer has a single responsibility
-- **Dependency Rule**: Dependencies point inward (View → Controller → Model → Data)
-- **Testability**: Each component can be tested independently
-- **Maintainability**: Easy to modify one layer without affecting others
-
-### Layer Responsibilities
-1. **Data Layer**: Manages data storage and retrieval
-2. **Model Layer**: Handles business logic (NLP/ML)
-3. **View Layer**: Manages UI presentation
-4. **Controller Layer**: Orchestrates interactions between layers
-
-## 🔄 Application Flow
-
-```
-User Input → View → Controller → Model → Data
-                ↓                   ↓
-              Display ← Controller ← Response
-```
-
-1. User types message in GUI (View)
-2. View notifies Controller via callback
-3. Controller gets message from View
-4. Controller passes message to Model for prediction
-5. Model preprocesses text and predicts intent
-6. Model retrieves response from Data layer
-7. Controller updates View with bot response
-8. View displays response to user
-
-## 👥 Development Team
-**The 5 Warriors** - NLP Project
-
-### 1. Omar Gamal 👑
-**Role**: Project Lead & Integration  
-**Focus**: System Architecture, Entry Point, Testing
-
-### 2. Muhand Sadek 🎨
-**Role**: Frontend Developer (GUI)  
-**Focus**: User Interface Design, Interaction Handling
-
-### 3. Ali Mustafa 🧠
-**Role**: AI/ML Specialist  
-**Focus**: Machine Learning Model, Training Logic
-
-### 4. Muhamed Hamed ⚙️
-**Role**: Backend Logic / Controller  
-**Focus**: Application Logic, Bridge between Model and View
-
-### 5. Ibrahimmelhaw 📊
-**Role**: Data Engineer  
-**Focus**: Dataset, Intents, Knowledge Base
-
-## 📝 License
-Educational Project
-
-## 🔧 Maintenance Notes
-- All original functionality preserved from single-file version
-- Same ML model parameters and behavior
-- Identical UI appearance and interactions
-- Zero breaking changes to user experience
